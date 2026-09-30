@@ -1,10 +1,15 @@
-from django.urls import path
-from .views import PredictAPIView, HistoryAPIView, DashboardAPIView, ModelPerformanceAPIView, AdminStatsAPIView
+from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
-    path("predict/", PredictAPIView.as_view(), name="api-predict"),
-    path("history/", HistoryAPIView.as_view(), name="api-history"),
-    path("dashboard/", DashboardAPIView.as_view(), name="api-dashboard"),
-    path("model-performance/", ModelPerformanceAPIView.as_view(), name="api-model-performance"),
-    path("admin-stats/", AdminStatsAPIView.as_view(), name="api-admin-stats"),
+    path("django-admin/", admin.site.urls),
+    path("", include("detector.urls")),
+    path("", include("accounts.urls")),
+    path("", include("dashboard.urls")),
+    path("api/", include("api.urls")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

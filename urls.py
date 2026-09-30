@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import register_view, login_view, logout_view, profile_view
+from .views import PredictAPIView, HistoryAPIView, DashboardAPIView, ModelPerformanceAPIView, AdminStatsAPIView
 
 urlpatterns = [
-    path("register/", register_view, name="register"),
-    path("login/", login_view, name="login"),
-    path("logout/", logout_view, name="logout"),
-    path("profile/", profile_view, name="profile"),
+    path("predict/", PredictAPIView.as_view(), name="api-predict"),
+    path("history/", HistoryAPIView.as_view(), name="api-history"),
+    path("dashboard/", DashboardAPIView.as_view(), name="api-dashboard"),
+    path("model-performance/", ModelPerformanceAPIView.as_view(), name="api-model-performance"),
+    path("admin-stats/", AdminStatsAPIView.as_view(), name="api-admin-stats"),
 ]

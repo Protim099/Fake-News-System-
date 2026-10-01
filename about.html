@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="row justify-content-center"><div class="col-lg-9"><h1 class="fw-bold">About the project</h1><p class="lead text-muted">A production-style academic web application demonstrating an end-to-end NLP classification pipeline.</p><div class="card-soft p-4 mt-4"><h4>How it works</h4><p>Submitted text is cleaned with reusable NLTK preprocessing, transformed into TF-IDF features, and classified by a saved Logistic Regression model. The API records the model output and confidence for the authenticated user.</p><h4 class="mt-4">Important limitation</h4><p>The model learns patterns from its training dataset. It does not independently verify sources or establish objective truth. Dataset bias, topic shift, satire, missing context and adversarial writing can cause errors. Important claims should be checked against reliable sources.</p></div></div></div></div>
+{% endblock %}

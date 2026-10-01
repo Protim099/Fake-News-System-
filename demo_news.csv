@@ -1,0 +1,21 @@
+text,label
+"The national weather service issued a routine advisory about heavy rainfall and advised residents to monitor official updates.",REAL
+"The city hospital announced its regular vaccination clinic schedule for next month through its official website.",REAL
+"The university published the final examination schedule on its official notice board.",REAL
+"The transport authority announced a temporary road closure for maintenance and provided an alternate route.",REAL
+"The central bank released an official notice describing changes to a financial reporting procedure.",REAL
+"The public library extended its weekend opening hours according to a notice on its website.",REAL
+"The education ministry published a scholarship circular with eligibility requirements and application dates.",REAL
+"The election commission published a procedural notice explaining how voters can check their registration information.",REAL
+"Scientists published a peer reviewed study describing the limitations and results of a laboratory experiment.",REAL
+"The municipality announced a tree planting program and invited residents to participate.",REAL
+"A viral post claims that drinking a secret mixture permanently prevents every disease without medical treatment.",FAKE
+"An anonymous message says every mobile phone will automatically receive free cash tonight if users forward the message to ten contacts.",FAKE
+"A social media post claims a common household object can instantly cure all serious illnesses with no scientific evidence.",FAKE
+"A fabricated article says the moon will disappear for seven days and authorities have ordered everyone indoors.",FAKE
+"An unverified post claims that all students will receive guaranteed government jobs simply by sharing a picture online.",FAKE
+"A viral message says a famous scientist discovered a universal cure but authorities are hiding it from the public.",FAKE
+"An anonymous account claims that every bank account will be doubled tomorrow without any official announcement.",FAKE
+"A misleading post says one simple trick can make any computer battery last forever.",FAKE
+"A fabricated report claims a city has banned all rain for the next year.",FAKE
+"A social media chain message claims that forwarding it will unlock a secret government reward.",FAKE

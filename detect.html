@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Detect News{% endblock %}
+{% block content %}
+<div class="container py-5">
+<div class="row justify-content-center"><div class="col-lg-9">
+<div class="mb-4"><span class="badge bg-primary-subtle text-primary">AI Analysis</span><h1 class="fw-bold mt-2">Analyze a news story</h1><p class="text-muted">Paste the article text below. A URL is optional and is stored as reference; the current baseline model analyzes the submitted text.</p></div>
+<div class="card-soft p-4">
+<form id="predict-form">
+{% csrf_token %}
+<label class="form-label fw-semibold">News text <span class="text-danger">*</span></label>
+<textarea id="news_text" class="form-control form-control-lg" rows="10" maxlength="50000" placeholder="Paste at least 20 characters of the news article..." required></textarea>
+<div class="d-flex justify-content-between small text-muted mt-1"><span>Do not submit sensitive personal information.</span><span id="counter">0 / 50000</span></div>
+<label class="form-label fw-semibold mt-4">News URL <span class="text-muted">(optional)</span></label>
+<input id="news_url" type="url" class="form-control" placeholder="https://example.com/article">
+<div id="error" class="alert alert-danger mt-3 d-none"></div>
+<div class="d-grid mt-4"><button id="submit-btn" class="btn btn-primary btn-lg"><span id="btn-text">Detect Fake News</span><span id="spinner" class="spinner-border spinner-border-sm d-none"></span></button></div>
+</form>
+<div class="alert alert-warning mt-4 mb-0"><strong>Important:</strong> This is an AI/ML prediction, not a factual verdict. Verify important claims with reliable sources.</div>
+</div></div></div></div>
+{% endblock %}
+{% block scripts %}
+<script>
+const text = document.getElementById('news_text');
+const counter = document.getElementById('counter');
+text.addEventListener('input', () => counter.textContent = `${text.value.length} / 50000`);
+document.getElementById('predict-form').addEventListener('submit', async (e) => {
+ e.preventDefault();
+ const btn=document.getElementById('submit-btn'), spin=document.getElementById('spinner'), bt=document.getElementById('btn-text'), err=document.getElementById('error');
+ err.classList.add('d-none'); btn.disabled=true; spin.classList.remove('d-none'); bt.textContent='Analyzing...';
+ try {
+   const r=await fetch('/api/predict/', {method:'POST', headers:{'Content-Type':'application/json','X-CSRFToken':getCookie('csrftoken')}, body:JSON.stringify({news_text:text.value, news_url:document.getElementById('news_url').value})});
+   const data=await r.json();
+   if(!r.ok) throw new Error(data.detail || 'Prediction failed.');
+   window.location.href='/result/'+data.id+'/';
+ } catch(ex) { err.textContent=ex.message; err.classList.remove('d-none'); }
+ finally { btn.disabled=false; spin.classList.add('d-none'); bt.textContent='Detect Fake News'; }
+});
+</script>
+{% endblock %}

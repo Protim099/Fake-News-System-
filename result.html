@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Prediction Result{% endblock %}
+{% block content %}
+<div class="container py-5"><div class="row justify-content-center"><div class="col-lg-8">
+<div class="card-soft p-4 p-md-5 text-center">
+<span class="badge {% if result.prediction == 'REAL' %}bg-success{% else %}bg-danger{% endif %} px-3 py-2">AI/ML PREDICTION</span>
+<h1 class="display-5 fw-bold mt-3 {% if result.prediction == 'REAL' %}text-success{% else %}text-danger{% endif %}">{{ result.prediction }}</h1>
+<p class="text-muted">The model predicts this submitted text as <strong>{{ result.prediction }}</strong>.</p>
+<div class="my-4"><div class="d-flex justify-content-between"><span>Confidence</span><strong>{{ result.confidence_percent|floatformat:1 }}%</strong></div><div class="progress mt-2" style="height:14px"><div class="progress-bar {% if result.prediction == 'REAL' %}bg-success{% else %}bg-danger{% endif %}" style="width:{{ result.confidence_percent|floatformat:0 }}%"></div></div></div>
+<div class="row g-3 text-start"><div class="col-md-6"><div class="mini-card"><span>Model</span><strong>{{ result.model_name }}</strong></div></div><div class="col-md-6"><div class="mini-card"><span>Timestamp</span><strong>{{ result.created_at|date:"M d, Y H:i" }}</strong></div></div></div>
+{% if result.news_url %}<p class="small mt-4">Reference URL: <a href="{{ result.news_url }}" target="_blank" rel="noopener noreferrer">{{ result.news_url }}</a></p>{% endif %}
+<div class="alert alert-warning text-start mt-4"><strong>Interpretation:</strong> Confidence reflects the model's probability estimate, not the probability that the underlying claim is objectively true. Verify important claims independently.</div>
+<div class="d-flex gap-2 justify-content-center mt-4"><a class="btn btn-primary" href="{% url 'detect' %}">Analyze another</a><a class="btn btn-outline-secondary" href="{% url 'history' %}">View history</a></div>
+</div></div></div></div>
+{% endblock %}

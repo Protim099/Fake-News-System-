@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.py[cod]
+*.sqlite3
+.venv/
+venv/
+media/*
+staticfiles/
+ml/models/*.joblib
+ml/models/*.json
+!ml/models/.gitkeep
+.idea/
+.vscode/
